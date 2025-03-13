@@ -2,15 +2,17 @@
 // anagram('coding money', 'money coding') --> true;
 // ignore spaces or punctuation and treat upper and lower case the same
 
-/*
-    HINT : 
-    step 1: build charMap for strA
-    step 2: build charMap for strB
-    step 3: compared both the charmaps
-*/
+function charMap(str) {
+    const charmap = {}
+    str = str.toLowerCase().replace(/\W/g, '')
+    for (let char in str) {
+        charmap[char] = ++charmap[char] || 1
+    }
+
+    return charmap;
+}
 
 function anagram(strA, strB) {
-    const charMapOfA = {}, charMapOfB = {};
     strA  = strA.toLowerCase().replace(/\W/g, '')
     strB = strB.toLowerCase().replace(/\W/g, '')
 
@@ -18,12 +20,7 @@ function anagram(strA, strB) {
         return false;
     }
     
-    for (let char of strA) {
-        charMapOfA[char] = ++charMapOfA[char] || 1
-    }
-    for (let char of strB) {
-        charMapOfB[char] = ++charMapOfB[char] || 1
-    }
+    const charMapOfA = charMap(strA), charMapOfB = charMap(strB);
 
     for (const key in charMapOfA) {
         if (charMapOfA[key] !== charMapOfB[key]) {
