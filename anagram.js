@@ -3,32 +3,28 @@
 // ignore spaces or punctuation and treat upper and lower case the same
 
 function charMap(str) {
-    const charmap = {}
-    str = str.toLowerCase().replace(/\W/g, '')
-    for (let char in str) {
-        charmap[char] = ++charmap[char] || 1
+    const charmap = {};
+    for (let char of str) {
+        charmap[char] = ++charmap[char] || 1;
     }
-
-    return charmap;
 }
 
-function anagram(strA, strB) {
-    strA  = strA.toLowerCase().replace(/\W/g, '')
-    strB = strB.toLowerCase().replace(/\W/g, '')
+function cleanStr(str) {
+    return str.toLowerCase().replace(/\W/g, '');
+}
 
-    if (strA.length !== strB.length) {
-        return false;
-    }
-    
+function anagram(strA, strB){
+    strA = cleanStr(strA)
+    strB = cleanStr(strB)
+
+    if (strA.length !== strB.length) return false;
     const charMapOfA = charMap(strA), charMapOfB = charMap(strB);
-
-    for (const key in charMapOfA) {
-        if (charMapOfA[key] !== charMapOfB[key]) {
-            return false;
-        }
+    
+    for (let key in charMapOfA) {
+        if (charMapOfA[key] !== charMapOfB[key]) return false;
     }
 
     return true;
 }
 
-console.log(anagram('RAIL!', 'Liar!!!!#%$%^'));
+console.log(anagram("papa john@$*($", "pa@#ap john"));
