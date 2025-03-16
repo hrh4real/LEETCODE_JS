@@ -1,0 +1,6 @@
+// const squares = [...Array(10)].map((_, i) => i + 1).filter(i => i % 2 === 0).map(item => item * item)
+// const squares = Array(10).fill(0).map((_, i) => (i + 1)).filter(i => i % 2 === 0).map(i => i ** 2)
+const squares = Array.from({ length: 10 }, (_, i) => (i + 1))
+                            .filter(i => i % 2 === 0)
+                            .map(i => i ** 2)
+console.log(squares)
